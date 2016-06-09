@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Vertiefungsrichtung Naturgefahren</title>
+
 <style>
 		h1 {
 			color: darkred;
@@ -14,3 +15,48 @@
 			font-style: bold}
 </style>
 <h1> Ein Rundgang durch Siglufjörður </h1>
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+<body>
+    <div id="Karte Siglufsfjordur" style="width:900px;height:600px"></div>
+    <script>
+        var map = L.map('Karte Siglufsfjordur', {
+            center : [66.151667, -18.909444],
+            zoom : 13
+        });
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'
+        }).addTo(map);
+		
+		
+		L.marker([66.1346094, -18.92925024]).addTo(map).bindPopup('<h1>Hallo!</h1><p>Hier wird versucht,</p><p>dass ganze umzusetzen!</p>');
+		L.marker([66.1346094, -18.93925024]).addTo(map).bindPopup('<h1>Hallo, Echo!!</h1><img style="width:300px;" src="http://www.vegagerdin.is/">');
+   
+   var marker = L.marker([66.13080659, -18.92912149]).addTo(map).bindPopup('1')
+	var marker = L.marker([66.12813214, -18.94740343]).addTo(map).bindPopup('2')
+	var marker = L.marker([66.12720296, -18.96193027]).addTo(map).bindPopup('3')
+   var marker = L.marker([66.11580688, -18.99282932]).addTo(map).bindPopup('4')
+   var marker = L.marker([66.13920152, -18.96909714]).addTo(map).bindPopup('5')
+	var marker = L.marker([66.14060763, -18.95128727]).addTo(map).bindPopup('6')
+	var marker = L.marker([66.14494701, -18.93472195]).addTo(map).bindPopup('7')
+	var marker = L.marker([66.14418333, -18.91849995]).addTo(map).bindPopup('8')
+	
+	var polyline = L.polyline([
+	[66.13080659, -18.92912149],
+	[66.12813214, -18.94740343],
+	[66.12720296, -18.96193027],
+	[66.11580688, -18.99282932],
+	[66.13920152, -18.96909714],
+	[66.14060763, -18.95128727],
+	[66.14494701, -18.93472195],
+	[66.14418333, -18.91849995]
+	
+	], {color: 'darkviolet', weight: 5}).addTo(map);
+	
+	map.fitBounds(polyline.getBounds())
+
+   </script>
+   <p>Route einer ersten Gebietsbegehung</p>
+</body>
