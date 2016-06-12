@@ -16,32 +16,93 @@
 </style>
 <h1> Ein Rundgang durch Siglufjörður </h1>
 
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+
+<link rel="stylesheet" href="js/leaflet/leaflet.css" />
+    <script src="js/leaflet/leaflet.js"></script>
+
+    <link rel="stylesheet" href="js/plugins/routing-machine/leaflet-routing-machine.css" />
+    <script src="js/plugins/routing-machine/leaflet-routing-machine.min.js"></script>
+
+	
+
+
 </head>
 <body>
+
+
+
+<div id="mousepos"></div>
+
+
     <div id="Karte Siglufjörður" style="width:1100px;height:600px"></div>
     <script>
         var map = L.map('Karte Siglufjörður', {
             center : [66.15053502, -18.90982032],
             zoom : 13
         });
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		
+		//variable für den ersten geklickten punkt
+		var first_point = null;
+		
+		//routing control hinzufügen und minimieren
+		var routing_control = L.Routing.control({
+			show : false
+			}).addTo(map);
+		
+		// Klicks auf Karte verarbeiten
+		map.on("click", function (event) {
+			if (first_point) {
+			//zeichnen der route
+			console.log("2.Punkt", event);
+			
+			//wegpunkt setzen und Routing Control zeigen
+			routing_control.setWaypoints([
+				first_point,
+				event.latlng
+			]);
+			routing_control.show();
+			
+			//ersten punkt wieder löschen
+			first_point = null;
+			} else {
+			
+			//Routing Control minimieren
+			routing_control.hide();
+			
+			//merken des ersten punktes
+			first_point = event.latlng;
+			console.log("1.Punkt", event);
+		}});
+		
+		
+		L.control.scale({
+            'imperial': false
+        }).addTo(map);
+		
+		var mouseposDiv = document.getElementById("mousepos");
+		map.on("mousemove", function(event) {
+			console.log("Event: ", event);
+		mouseposDiv.innerHTML = "Lat:" + event.latlng.lat + "  Lng:"+ event.latlng.lng;
+		});
+        
+
+		
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(map);
 		
-		
-		L.marker([66.1346094, -18.92925024]).addTo(map).bindPopup('<iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465475204303!6m8!1m7!1syUHquR-Natd-PPYcu9bcPw!2m2!1d66.15097413950149!2d-18.91153384602451!3f326.25782870616825!4f21.832936915957845!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>');
-		L.marker([66.1346094, -18.93925024]).addTo(map).bindPopup('<h1>Hallo, Echo!!</h1><img style="width:300px;" src="http://www.vegagerdin.is/">');
+
    
    var marker = L.marker([66.16103959, -18.9033401]).addTo(map).bindPopup('<h3> Nördlicher Parkplatz mit Informationstafel</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465480984961!6m8!1m7!1sdt6t5wzLCaKkHtZ5EzXqRw!2m2!1d66.16097371047003!2d-18.90314614536178!3f290.6206520588074!4f-3.185324477096529!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
 	var marker = L.marker([66.15557967, -18.90937507]).addTo(map).bindPopup('<h3>Krankenhaus</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465482379954!6m8!1m7!1s48owhAC1lZuGNx9Mng5j1A!2m2!1d66.1558175!2d-18.9086294!3f252.1415580561527!4f-0.7691514410686295!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
 	var marker = L.marker([66.15185375, -18.90956819]).addTo(map).bindPopup('<h3>Vínbúðin Siglufirði - isländischer Alkoholmarkt</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465482652619!6m8!1m7!1s8MTkwHIXXZ6J42cuuPU8qA!2m2!1d66.15182955253933!2d-18.90938799067381!3f310.08254775472625!4f-1.9346172789380915!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
    var marker = L.marker([66.1504873, -18.90935361]).addTo(map).bindPopup('<h3>Zentraler Platz mit Supermarkt</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465482875897!6m8!1m7!1sbZ_ynaD7uhycHiAetbVs0Q!2m2!1d66.15052472621068!2d-18.90915571058954!3f283.7658271791833!4f-2.0949134982879087!5f3.315577058595731" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
    var marker = L.marker([66.1510122, -18.91178906]).addTo(map).bindPopup('<h3>Kirche von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465483146026!6m8!1m7!1s2mAIvT_hA0byiMlhLYARIQ!2m2!1d66.15090678414245!2d-18.91165821900479!3f342.7021535954256!4f14.443519210845864!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
-	var marker = L.marker([66.14060763, -18.95128727]).addTo(map).bindPopup('6')
-	var marker = L.marker([66.14494701, -18.93472195]).addTo(map).bindPopup('7')
-	var marker = L.marker([66.14418333, -18.91849995]).addTo(map).bindPopup('8')
+	var marker = L.marker([66.1531247, -18.91218603]).addTo(map).bindPopup('<h3>Schule von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488083844!6m8!1m7!1sA6d-BJT7ADXTv1lcDFJpdw!2m2!1d66.15298116225992!2d-18.91217492087371!3f56.658477790900896!4f1.447043965674922!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
+	var marker = L.marker([66.14920755, -18.91145647]).addTo(map).bindPopup('<h3>Blick auf den Hafen von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488293794!6m8!1m7!1sePdU8vfFJxG_qmPTnnvlCA!2m2!1d66.14911695420997!2d-18.91163659495346!3f105.64026000616849!4f-9.037252519570842!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
+	var marker = L.marker([66.13281225, -18.91806006]).addTo(map).bindPopup('<h3>Flughafen von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488624668!6m8!1m7!1setAImBoalbkPVOsv6_U_yA!2m2!1d66.1328322!2d-18.9180191!3f24.307931700129657!4f0.9148385605387688!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe><h3>Blick Richtung Norden</h3>')
+	var marker = L.marker([66.12703362, -18.96594957]).addTo(map).bindPopup('<h3>Skigebiet von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488780038!6m8!1m7!1sxkZAk9-Sqv5JM0hrjiVb0Q!2m2!1d66.12702137326205!2d-18.9659749248329!3f236.1903416773648!4f14.234605610246007!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
 	
 	var polyline = L.polyline([
 	[66.13080659, -18.92912149],
@@ -55,9 +116,10 @@
 	
 	], {color: 'darkviolet', weight: 5}).addTo(map);
 	
-	//map.fitBounds(polyline.getBounds())//
+	//map.fitBounds(polyline.getBounds()//
+	
+	</script>
 
-   </script>
-   <p>Route einer ersten Gebietsbegehung</p>
+   <p>TEXT?!</p>
 </body>
 
