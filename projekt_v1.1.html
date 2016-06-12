@@ -6,16 +6,20 @@
 
 <style>
 		h1 {
+			text-align: center;
 			color: darkred;
 			font-size: 500%;
 			font-style: italic;
 		}
-		h2 {color: blue;
+		h2 {
+			text-align: center;
+			color: blue;
 			font-size: 200%;
 			font-style: bold}
+		map {text-align: center}
 </style>
-<h1> Ein Rundgang durch Siglufjörður </h1>
-
+<h1>Siglufjörður</h1>
+<h2> Seine schönen und gefährlichen Seiten </h2>
 
 
 <link rel="stylesheet" href="js/leaflet/leaflet.css" />
@@ -35,13 +39,15 @@
 <div id="mousepos"></div>
 
 
-    <div id="Karte Siglufjörður" style="width:1100px;height:600px"></div>
-    <script>
-        var map = L.map('Karte Siglufjörður', {
-            center : [66.15053502, -18.90982032],
-            zoom : 13
-        });
-		
+    <div id="Karte Siglufjörður" style="width:1000px;height:500px;"></div>
+    
+	<script>
+       
+		var map = L.map('Karte Siglufjörður', {
+			center : [66.15053502, -18.90982032],
+            zoom : 13			
+		});
+	
 		//variable für den ersten geklickten punkt
 		var first_point = null;
 		
@@ -91,7 +97,7 @@
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(map);
-		
+	
 
    
    var marker = L.marker([66.16103959, -18.9033401]).addTo(map).bindPopup('<h3> Nördlicher Parkplatz mit Informationstafel</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465480984961!6m8!1m7!1sdt6t5wzLCaKkHtZ5EzXqRw!2m2!1d66.16097371047003!2d-18.90314614536178!3f290.6206520588074!4f-3.185324477096529!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
@@ -103,9 +109,23 @@
 	var marker = L.marker([66.14920755, -18.91145647]).addTo(map).bindPopup('<h3>Blick auf den Hafen von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488293794!6m8!1m7!1sePdU8vfFJxG_qmPTnnvlCA!2m2!1d66.14911695420997!2d-18.91163659495346!3f105.64026000616849!4f-9.037252519570842!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
 	var marker = L.marker([66.13281225, -18.91806006]).addTo(map).bindPopup('<h3>Flughafen von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488624668!6m8!1m7!1setAImBoalbkPVOsv6_U_yA!2m2!1d66.1328322!2d-18.9180191!3f24.307931700129657!4f0.9148385605387688!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe><h3>Blick Richtung Norden</h3>')
 	var marker = L.marker([66.12703362, -18.96594957]).addTo(map).bindPopup('<h3>Skigebiet von Siglufjörður</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sat!4v1465488780038!6m8!1m7!1sxkZAk9-Sqv5JM0hrjiVb0Q!2m2!1d66.12702137326205!2d-18.9659749248329!3f236.1903416773648!4f14.234605610246007!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
+	var marker = L.marker([66.13058301, -18.92394215]).addTo(map).bindPopup('<h3>Golfresort mit Hotel</h3><iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sde!2sde!4v1465739993956!6m8!1m7!1sSB5x9TJWa0U0EcGaAfh51A!2m2!1d66.13051623534442!2d-18.92425132066523!3f108.04622955649039!4f-1.4199243123538423!5f0.7820865974627469" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>')
+	
+var myIcon = L.icon({
+    iconUrl: '1465760270_Map-Marker-Ball-Right-Chartreuse.png',
+    iconSize: [30, 40],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+ 
+});
+	
+	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
+	var marker = L.marker([66.13475698, -18.92956138], {icon: myIcon}).addTo(map).bindPopup('<h3>Hotspot für Murgänge</h3><img src="Mure1.jpg" style="height:300px;"/><h3> Rote Linien markieren mögliche Murgänge </h3>')
+	var marker = L.marker([66.12497700, -18.97650003], {icon: myIcon}).addTo(map).bindPopup('<h3>Lawinengefährdung</h3><img src="Lawine1.jpg" style="height:300px;"/>')
+	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
+	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
 	
 
-	
 	
 	
 	</script>
