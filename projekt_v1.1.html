@@ -17,12 +17,33 @@
 			font-size: 200%;
 			font-style: bold}
 		map {text-align: center}
+		h3 {
+		text-align: center;
+		color: black;
+		font-style: italic}
 </style>
 <h1>Siglufjörður</h1>
 <h2> Seine schönen und gefährlichen Seiten </h2>
+<h3>Siglufjörður ist eine Ortschaft im Norden Islands und gehört zur Region Norðurland eystra. 
+<p>Der Ort befindet sich auf der Halbinsel Tröllaskagi und hat rund 1200 Einwohner. 
+<p>Im Rahmen der Lehrveranstaltung „Mensch-Naturgefahren-Interaktion“ fand im Sommer 2015 eine Exkursion in diese Ortschaft und die umliegende Gegend statt. 
+<p>Ziel der Exkursion war die Aufnahme und Kartierung möglicher Naturgefahren.
+<p>Einige Gefahren waren bereits erkannt und durch entsprechende Schutzmaßnahmen der Isländer gebannt. 
+<p>Weitere Gefahrenhotspots wurden jedoch ausgemacht und in der Nachbereitung der Exkursion modelliert und ihre Jährlichkeiten verifiziert.</h3>
 
+<p>Weitere Informationen zu Siglufjörður sind unter folgenden Links zu finden:
 
-<link rel="stylesheet" href="js/leaflet/leaflet.css" />
+<ul>
+<li><a href="https://de.wikipedia.org/wiki/Siglufj%C3%B6r%C3%B0ur"> Wikipediaartikel zu Siglufjörður</a></li>
+<li><a href="http://derstandard.at/1343744469262/Aufstieg-und-Fall-der-Stadt-Siglufjoerdur"> Standardartikel zu Siglufjörður</a></li>
+<li><a href="http://sonne-wolken.de/2014/08/sigulfjoerdur-die-noerdlichste-stadt-islands/"> Reisebericht zu Siglufjörður</a></li>
+<li><a href="http://www.northiceland.is/en/what-to-see-do/towns/siglufjordur"> Informationsseite von Siglufjörður</a></li>
+<li><a href="http://www.booking.com/city/is/siglufjordur.de.html"> Hotelbuchung in Siglufjörður</a></li>
+
+</ul>
+
+<p>
+<p><link rel="stylesheet" href="js/leaflet/leaflet.css" />
     <script src="js/leaflet/leaflet.js"></script>
 
     <link rel="stylesheet" href="js/plugins/routing-machine/leaflet-routing-machine.css" />
@@ -122,14 +143,35 @@ var myIcon = L.icon({
 	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
 	var marker = L.marker([66.13475698, -18.92956138], {icon: myIcon}).addTo(map).bindPopup('<h3>Hotspot für Murgänge</h3><img src="Mure1.jpg" style="height:300px;"/><h3> Rote Linien markieren mögliche Murgänge </h3>')
 	var marker = L.marker([66.12497700, -18.97650003], {icon: myIcon}).addTo(map).bindPopup('<h3>Lawinengefährdung</h3><img src="Lawine1.jpg" style="height:300px;"/>')
-	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
-	var marker = L.marker([66.1692511, -18.90272856], {icon: myIcon}).addTo(map).bindPopup('<h3>Gefährdung durch Muren und Steinschlag</h3>')
+	var marker = L.marker([66.12542266, -18.88944089], {icon: myIcon}).addTo(map).bindPopup('<h3>Gebiet der Trinkwasserversorgung</h3><img src="Lawine2.jpg" style="height:300px;"/>Gefährdung durch Lawinen')
 	
-
+	
+var polyline = L.polyline([
+	[66.16097021, -18.90587211],
+	[66.15933105, -18.90994906],
+	[66.15711064, -18.91162276]
+	], {color: 'darkviolet', weight: 5}).addTo(map);
+var polyline = L.polyline([
+	[66.15649046, -18.91186416],
+	[66.15305096, -18.91646147],
+	[66.14984093, -18.91933143],
+	[66.14579744, -18.91876817]
+	], {color: 'darkviolet', weight: 5}).addTo(map);
+var polyline = L.polyline([	
+	[66.14636148, -18.92134309],
+	[66.14549371, -18.92331719]
+	], {color: 'darkviolet', weight: 5}).addTo(map);
+var polyline = L.polyline([	
+	[66.14629206, -18.92887473],
+	[66.14062499, -18.92318845]
+	], {color: 'darkviolet', weight: 5}).addTo(map);	
 	
 	
 	</script>
 
-   <p>TEXT?!</p>
+   <p>Die vorliegende Karte stellt einige interessante Sehenswürdigkeiten der Ortschaft dar.
+   <p>Neben den blau markierten "Points of interest" sind auch noch die genannten Gefahrenhotspots eingebunden, durch grüne Pins markiert.
+   <p>Weiters sind durch violette Linien bereits vorhandene Schutzmaßnahmen gegen Lawinen und Murgänge eingezeichnet.
+   </p>
 </body>
 
